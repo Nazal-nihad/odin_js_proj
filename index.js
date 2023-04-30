@@ -1,56 +1,104 @@
-// const a = "hello world";
-// console.log(a);
-// alert(a);
+//main variables
+let compscore = 0;
+let playerscore = 0;
+let playerChoice;
+let win = false;
 
+//main buttons
+const buttons = document.querySelector(".btn");
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissor = document.querySelector("#scissor");
+const restart_game = document.querySelector("#restart");
+
+//main displays
+let player_msg = document.querySelector("#player_choice");
+let comp_msg = document.querySelector("#comp_choice");
+let win_msg = document.getElementById("win_msg");
+
+//getting random choice from 1-3
 function getComputerChoice() {
   let compChoice = Math.floor(Math.random() * 3) + 1;
   return compChoice;
 }
-function getPlayerChoice() {
-  let playerChoice = parseInt(
-    prompt("1 - for rock \n2 - for paper\n3 - for scissor ")
-  );
-  return playerChoice;
-}
-let compscore = 0;
-let playerscore = 0;
-function playRound(getComputerChoice, getPlayerChoice) {
-  if (getComputerChoice === getPlayerChoice) {
-    compscore++;
-    playerscore++;
-  } else if (
-    (getComputerChoice === 1 && getPlayerChoice === 2) ||
-    (getComputerChoice === 2 && getPlayerChoice === 3) ||
-    (getComputerChoice === 3 && getPlayerChoice === 1)
-  ) {
-    playerscore++;
-  } else if (
-    (getComputerChoice === 1 && getPlayerChoice === 3) ||
-    (getComputerChoice === 2 && getPlayerChoice === 1) ||
-    (getComputerChoice === 3 && getPlayerChoice == 2)
-  ) {
-    compscore++;
+
+//buttons event listener
+restart_game.addEventListener("click", () => {
+  restart();
+});
+
+rock.addEventListener("click", () => {
+  play(1, "rock");
+});
+paper.addEventListener("click", () => {
+  play(2, "paper");
+});
+scissor.addEventListener("click", () => {
+  play(3, "scissor");
+});
+
+//main game function
+function play(num, message) {
+  if (!win) {
+    let p = getComputerChoice();
+    playerChoice = num;
+    game(p);
+    compMsg(p);
+    player_msg.textContent = message + " " + playerscore;
+    checkwin();
   } else {
-    compscore++;
+    win_msg.innerHTML = "Press restart to play again";
   }
 }
 
-function game() {
-  for (let i = 0; i < 5; i++) {
-    let a = getComputerChoice();
-    let b = getPlayerChoice();
-    playRound(a, b);
-    console.log(a);
-    console.log(b);
-    console.log(compscore);
-    console.log(playerscore);
-  }
-  if (compscore > playerscore) {
-    alert("computer won");
-  } else if (compscore < playerscore) {
-    alert("you win");
-  } else {
-    alert("tie");
+//computer display message
+function compMsg(choice) {
+  let x = choice;
+  if (x === 1) {
+    comp_msg.textContent = "Rock " + compscore;
+  } else if (x === 2) {
+    comp_msg.textContent = "Paper " + compscore;
+  } else if (x === 3) {
+    comp_msg.textContent = "scissors " + compscore;
   }
 }
-game();
+
+//logic for incrementing score
+function game(comp_val) {
+  let a = comp_val;
+  if (
+    (playerChoice === 1 && a === 2) ||
+    (playerChoice === 2 && a === 3) ||
+    (playerChoice === 3 && a === 1)
+  ) {
+    if (compscore < 5 && playerscore < 5) {
+      compscore += 1;
+    }
+  } else if (
+    (playerChoice === 1 && a === 3) ||
+    (playerChoice === 2 && a === 1) ||
+    (playerChoice === 3 && a === 2)
+  ) {
+    if (compscore < 5 && playerscore < 5) {
+      playerscore += 1;
+    }
+  }
+  console.log(playerscore, compscore);
+}
+
+function checkwin() {
+  if (compscore === 5) {
+    win = true;
+  } else if (playerscore === 5) {
+    win = true;
+  }
+}
+
+//display and score reset
+function restart() {
+  playerscore = 0;
+  compscore = 0;
+  player_msg.textContent = "player " + playerscore;
+  comp_msg.textContent = "computer " + compscore;
+  win = false;
+}
