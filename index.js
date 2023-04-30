@@ -89,8 +89,10 @@ function game(comp_val) {
 function checkwin() {
   if (compscore === 5) {
     win = true;
+    win_msg.innerText = "Computer won";
   } else if (playerscore === 5) {
     win = true;
+    win_msg.innerText = "You won";
   }
 }
 
@@ -98,6 +100,7 @@ function checkwin() {
 function restart() {
   playerscore = 0;
   compscore = 0;
+  win_msg.innerText = "";
   player_msg.textContent = "player " + playerscore;
   comp_msg.textContent = "computer " + compscore;
   win = false;
