@@ -101,7 +101,7 @@ function restart() {
   playerscore = 0;
   compscore = 0;
   win_msg.innerText = "";
-  player_msg.textContent = "player " + playerscore;
-  comp_msg.textContent = "computer " + compscore;
+  player_msg.textContent = playerscore;
+  comp_msg.textContent = compscore;
   win = false;
 }
