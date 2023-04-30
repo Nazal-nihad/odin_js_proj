@@ -2,27 +2,55 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
   <body>
-    <h1>Hello</h1>
+    <h1>Rock - Paper - scissors</h1>
 
     <div class="main_buttons">
-      <button class="btn" id="rock">rock</button>
-      <button class="btn" id="paper">paper</button>
-      <button class="btn" id="scissor">scissor</button>
+      <button class="btn" id="rock">
+        <img
+          src="images/rock.png"
+          alt="rock image"
+          height="100px"
+          width="100px"
+        />
+      </button>
+      <button class="btn" id="paper">
+        <img
+          src="images/paper.png"
+          alt="paper image"
+          height="100px"
+          width="100px"
+        />
+      </button>
+      <button class="btn" id="scissor">
+        <img
+          src="images/scissor.png"
+          alt="scissor image"
+          height="100px"
+          width="100px"
+        />
+      </button>
     </div>
 
     <div class="player_msg">
-      <p id="player_choice">player</p>
-      <p id="comp_choice">computer</p>
+      <div id="sprite">
+        player
+        <p id="player_choice"></p>
+      </div>
+      <div id="sprite">
+        Computer
+        <p id="comp_choice"></p>
+      </div>
     </div>
 
     <div id="win_msg"></div>
 
-    <div>
+    <div id="re_button">
       <button id="restart">restart</button>
     </div>
   </body>

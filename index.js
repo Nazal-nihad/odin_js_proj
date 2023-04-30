@@ -28,13 +28,13 @@ restart_game.addEventListener("click", () => {
 });
 
 rock.addEventListener("click", () => {
-  play(1, "rock");
+  play(1, "Rock");
 });
 paper.addEventListener("click", () => {
-  play(2, "paper");
+  play(2, "Paper");
 });
 scissor.addEventListener("click", () => {
-  play(3, "scissor");
+  play(3, "Scissor");
 });
 
 //main game function
